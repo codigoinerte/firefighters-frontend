@@ -1,0 +1,33 @@
+html,body{
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100wh;
+}
+html *,
+body *{
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    text-decoration: none;
+}
+ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: inherit;
+}
+#root{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* generales */
+.icon{
+    width: 1rem;
+}

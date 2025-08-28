@@ -1,0 +1,26 @@
+.filter-item{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+.filter-item + .filter-item{
+    margin-top: 1rem;
+}
+.filter-item label{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+.filter-item input,
+.filter-item select{
+    background-color: #fff;
+    border-color: #e5e7eb;
+    border-radius: 0.5rem;
+    color: #4b5563;
+    min-width: 250px;
+    outline: none;
+    padding: 0.73rem;
+}
