@@ -1,10 +1,10 @@
 import { Cancel01Icon, FilterHorizontalIcon, Location01Icon, MapsRefreshIcon, Search01Icon, ToggleOffIcon } from '@hugeicons/core-free-icons';
-import { FilterItemSelect } from './FilterItemSelect';
-import { menuStore } from '../store/menu.store';
-import { Icons } from './Icons';
+import { FilterItemSelect } from '../filteritemselect';
+import { menuStore } from '../../store/menu.store';
+import { Icons } from '../Icons';
 import './Filters.css';
-import { FilterSelectOption } from '../interface/FilterSelect';
-import { filterValue } from '../interface/Search';
+import { FilterSelectOption } from '../../interface/FilterSelect';
+import { filterValue } from '../../interface/Search';
 
 interface Props {
   cities: FilterSelectOption[];
