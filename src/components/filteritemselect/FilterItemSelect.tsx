@@ -1,8 +1,8 @@
-import { Icons } from "./Icons"
+import { Icons } from "../Icons"
 import { IconSvgElement } from "@hugeicons/react";
-import { FilterSelectOption, FilterSelectProps } from "../interface/FilterSelect";
-import "./FilterItem.css"
-import { filterValue } from "../interface/Search";
+import { FilterSelectOption, FilterSelectProps } from "../../interface/FilterSelect";
+import "./FilterItemSelect.css"
+import { filterValue } from "../../interface/Search";
 
 interface FilterItemProps {
     icon: IconSvgElement
