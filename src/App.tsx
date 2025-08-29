@@ -1,19 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import { Header, Mapa } from "./components"
-import { Filters } from "./components/Filters"
-import { Incident, IncidentResponse } from "./interface/Incident";
+import { useEffect, useState } from "react";
+import { Header, Filters, Loader, MapaAdvance } from "./components"
+import { 
+        BoundaryResponse, 
+        coordinatesType ,
+        FilterSelectOption, 
+        filterValue, 
+        Incident, 
+        IncidentResponse, 
+        latlng, 
+        SearchProps, 
+} from "./interface";
 import { api } from "./api/base";
-import { FilterSelectOption } from "./interface/FilterSelect";
-import { filterValue, SearchProps } from "./interface/Search";
-import { Loader } from "./components/Loader";
-import { BoundaryResponse, coordinatesType } from "./interface/boundaryResponse";
-import { googleType, latlng } from "./components/MapaProps";
 import { MapsDefault } from "./helpers/MapsDefault";
+
+import { useMap } from "@vis.gl/react-google-maps";
 
 
 export const App = () => {   
 
-    const map = useRef<googleType>(null);
+    // const map = useRef<googleType>(null);
+    const map = useMap('mapa');
     const [coordsPath, setCoordsPath] = useState<latlng[]>([])
     const [incidents, setIncidents] = useState<Incident[]>([])
 
@@ -56,6 +62,7 @@ export const App = () => {
     const getIncidents = async () => {
 
         setFilterState(ps => ({...ps, isLoading: true}));
+        setIncidents([]);
 
         const data = {
             ...(filterState.city && filterState.city?.length > 0 ? {city: filterState.city}: {}),
@@ -90,23 +97,23 @@ export const App = () => {
         setFilterState(ps => ({...ps, shouldSearch: true }));
 
         const coords = await getBoundary(filterState.city);
-        console.log(coords);
+
         if(coords && coords?.length > 0){
             const center = getBoundaryCenter(coords);
             const coordsFilter = coords.map((item:number[])=> ({lat: item[1] ?? '', lng: item[0] ?? ''}));
             setCoordsPath(coordsFilter);
-            map.current?.panTo(center);
+            map?.panTo(center);
         }else{
             setCoordsPath([]);
-            map.current?.panTo(MapsDefault.center);
-            map.current?.setZoom(MapsDefault.zoom);
+            map?.panTo(MapsDefault.center);
+            map?.setZoom(MapsDefault.zoom);
         }
     }
 
     const handleClear = async ()=>{
         setFilterState(ps => ({...ps, city: '', state: '', shouldSearch: true }));
-        map.current?.panTo(MapsDefault.center);
-        map.current?.setZoom(MapsDefault.zoom);
+        map?.panTo(MapsDefault.center);
+        map?.setZoom(MapsDefault.zoom);
         setCoordsPath([]);
     }
 
@@ -130,14 +137,11 @@ export const App = () => {
                 city={filterState.city}
                 state={filterState.state}/>
                 
-                { <Loader style={{display: filterState.isLoading ? 'flex' : 'none'}} /> }
+            <Loader style={{display: filterState.isLoading ? 'flex' : 'none'}} />
             
-            <Mapa 
+            <MapaAdvance 
                 incidents={incidents} 
-                coordsPath={coordsPath} 
-                onRef={(google: googleType) => {
-                    map.current = google;
-                }}
+                coordsPath={coordsPath}
             />
         </>
     )
