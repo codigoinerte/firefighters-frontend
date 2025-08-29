@@ -4,5 +4,6 @@ export interface IconsProps {
     icon: IconSvgElement,
     size?: string | number | undefined
     color?: string | undefined
-    strokeWidth?: number | undefined
+    strokeWidth?: number | undefined,
+    fill?: string | undefined,
 }
