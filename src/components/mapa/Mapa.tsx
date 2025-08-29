@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import { GoogleMap, LoadScript, Marker, Polygon } from '@react-google-maps/api';
-import { themeStore } from '../store/theme.store';
-import MapaStyle from '../helpers/MapaStyle';
-import MapaStyleDark from '../helpers/MapaStyleDark';
-import { googleType, MapaProps } from './MapaProps';
+import { themeStore } from '../../store/theme.store';
+import MapaStyle from '../../helpers/MapaStyle';
+import MapaStyleDark from '../../helpers/MapaStyleDark';
+import { googleType, MapaProps } from '../../interface/MapaProps';
 import './Mapa.css';
-import { MapsDefault } from '../helpers/MapsDefault';
+import { MapsDefault } from '../../helpers/MapsDefault';
 
 const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 const containerStyle = {
