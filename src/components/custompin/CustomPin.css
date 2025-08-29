@@ -1,0 +1,200 @@
+:root{
+    --estate-green-dark: #12271e;
+    --widthmax : 300px
+}
+gmp-advanced-marker:has(.iconmarker.clicked),
+gmp-advanced-marker:has(.iconmarker.hovered){
+    z-index: 99;
+}
+/* hover */
+.iconmarker.hovered {
+  z-index: 2;
+}
+.iconmarker.hovered .custom-pin {
+  max-width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.iconmarker.hovered .custom-pin .image-container {
+  opacity: 1;
+  border-radius: inherit;
+}
+.iconmarker.hovered .custom-pin .image-container .icon {
+  opacity: 0;
+}
+.iconmarker.hovered .tip {
+  transform: translateY(23%) translateX(-50%) rotate(45deg) scale(1.4);
+}
+
+/* clicked */
+.iconmarker.clicked {
+    transform: translateY(-9px);
+    z-index: 99;
+}
+.iconmarker.clicked .custom-pin {
+    background-color: var(--estate-green-dark);
+    border-radius: 0;
+    height: 250px;
+    max-width: 650px;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+.iconmarker.clicked .custom-pin .details-container {
+    animation: .7s ease-in-out a;
+    animation: slideInFadeIn 0.7s ease-in-out;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--widthmax);
+    opacity: 1;
+    padding: 1rem;
+    visibility: visible;
+}
+.iconmarker.clicked .custom-pin .details-container ul{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+}
+.iconmarker.clicked .custom-pin .details-container .title{
+    margin-top: 0px;
+    margin-bottom: 0.7rem;
+    font-size: 0.85rem;
+}
+.iconmarker.clicked .custom-pin .details-container li:not(:last-child){
+    display: grid;
+    gap: 1rem;  
+    grid-template-columns: 1rem auto;  
+}
+.iconmarker.clicked .custom-pin .details-container li:last-of-type{
+    margin-top: auto;
+}
+.iconmarker.clicked .custom-pin .details-container svg{
+    width: 1rem;
+}
+.iconmarker.clicked .custom-pin .details-container li p{
+    margin: 0;
+}
+.iconmarker.clicked .custom-pin .details-container p,
+.iconmarker.clicked .custom-pin .details-container li {
+    font-size: 0.8rem;
+}
+.iconmarker.clicked .custom-pin .image-container .icon {
+    opacity: 0;
+    visibility: hidden;
+}
+.iconmarker.clicked .custom-pin .image-container{
+    max-width: 220px;
+}
+.iconmarker.clicked .custom-pin .image-container img {
+    object-fit: cover;
+}
+.iconmarker.clicked .custom-pin .details-container .open-linnk{
+    background-color: #2563eb;
+    border-radius: 0.25rem;
+    border: 0px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+/* custom pin */
+.custom-pin{
+    align-items: center;
+    background-color: var(--estate-green-dark);
+    border-radius: 50%;
+    display: flex;    
+    height: 34px;
+    justify-content: center;
+    max-width: 34px;
+    padding: 4px;
+    position: relative;
+    transform-origin: bottom;
+    transition: max-width .2s ease-in-out, height .2s ease-in-out, border-radius .2s ease-in-out;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.custom-pin .image-container
+ {
+    align-items: center;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: inherit;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    max-width: 285px;
+    overflow: hidden;
+    position: relative;
+    transition: opacity .2s ease-in-out;
+    width: 100%;
+}
+.custom-pin .photo{
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.custom-pin .photo img{
+    height: 100%;
+    width: 100%;
+}
+.custom-pin .icon {
+    opacity: 1;
+    position: absolute;
+    transition: opacity .2s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    background-color: rgb(216, 0, 0);
+}
+.custom-pin .details-container {
+    border-bottom-right-radius: inherit;
+    border-top-right-radius: inherit;
+    height: 100%;
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tip {
+    border: 8px solid var(--estate-green-dark);
+    border-radius: 0 0 5px;
+    bottom: 0;
+    height: 0;
+    left: 50%;
+    position: absolute;
+    transform: translateY(22%) translateX(-50%) rotate(45deg);
+    transition: .2s ease-in-out;
+    width: 0;
+    z-index: -1;
+}
+
+@keyframes slideInFadeIn {
+  0% {
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  75% {
+    max-width: var(--widthmax);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    max-width: var(--widthmax);
+    opacity: 1;
+    visibility: visible;
+  }
+}
