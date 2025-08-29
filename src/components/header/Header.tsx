@@ -1,8 +1,8 @@
 import { FilterVerticalIcon, Share08Icon } from '@hugeicons/core-free-icons';
 import './Header.css';
-import { Icons } from './Icons';
-import { ButtonTheme } from './ButtonTheme';
-import { menuStore } from '../store/menu.store';
+import { Icons } from '../Icons';
+import { ButtonTheme } from '../ButtonTheme';
+import { menuStore } from '../../store/menu.store';
 
 export const Header = () => {
 
