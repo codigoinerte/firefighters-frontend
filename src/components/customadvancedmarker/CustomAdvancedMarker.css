@@ -1,0 +1,6 @@
+.iconmarker {
+  cursor: pointer;
+  position: relative;
+  transform: translateY(-5px);
+  transition: .2s ease-in-out;
+}
