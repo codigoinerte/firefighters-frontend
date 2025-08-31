@@ -202,9 +202,6 @@ gmp-advanced-marker:has(.iconmarker.hovered){
 }
 
 @media(max-width:767px){
-    .iconmarker.clicked .custom-pin{
-        /* height: 300px; */
-    }
     .iconmarker.clicked .custom-pin .image-container{
         display: none;
     }
