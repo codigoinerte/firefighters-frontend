@@ -11,8 +11,6 @@ export * from './header'
 // eslint-disable-next-line react-refresh/only-export-components
 export * from './loader'
 // eslint-disable-next-line react-refresh/only-export-components
-export * from './mapa'
-// eslint-disable-next-line react-refresh/only-export-components
 export * from './header'
 // eslint-disable-next-line react-refresh/only-export-components
-export * from './MapaAdvance'
+export * from './mapaadvance'
