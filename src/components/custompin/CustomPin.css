@@ -159,6 +159,9 @@ gmp-advanced-marker:has(.iconmarker.hovered){
     box-sizing: border-box;
     background-color: rgb(216, 0, 0);
 }
+.custom-pin .icon.older{
+    background-color: rgb(0, 216, 144);
+}
 .custom-pin .details-container {
     border-bottom-right-radius: inherit;
     border-top-right-radius: inherit;

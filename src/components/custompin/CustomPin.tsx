@@ -21,7 +21,7 @@ export const CustomPin = ({position, incident}:CustomPinProps) => {
                     <div className="photo">
                         <img src={image} alt="Imagen de la ubicación por latitud y longitud" width={30} height={30}/>
                     </div>
-                    <div className="icon">
+                    <div className={`icon ${incident.state.toLowerCase() != 'atendiendo' ? 'older' : ''}`}>
                         <Icons icon={Fire03Icon} color='#fff' size={30} fill='#000'/>
                     </div>
                 </div>
