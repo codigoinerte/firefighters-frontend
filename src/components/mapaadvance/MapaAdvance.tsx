@@ -24,6 +24,7 @@ export const MapaAdvance = ({incidents, coordsPath}: MapaAdvanceProps) => {
                 mapTypeControl={false}
                 fullscreenControl={false}
                 streetViewControl={false}
+                gestureHandling={'greedy'}
                 className='mapa'
             >
                 {
