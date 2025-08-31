@@ -6,6 +6,6 @@
 }
 @media(max-width:768px){
     .mapa{
-        height: calc(100svh - var(--header-height));
+        height: calc(100dvh - var(--header-height));
     }
 }
