@@ -1,9 +1,10 @@
 import { Map } from '@vis.gl/react-google-maps'
-import { MapaAdvanceProps } from '../interface/MapaProps';
-import { MapsDefault } from '../helpers/MapsDefault';
-import { themeStore } from '../store/theme.store';
-import { Polygon } from './Polygon';
-import { CustomAdvancedMarker } from './customadvancedmarker';
+import { MapaAdvanceProps } from '../../interface/MapaProps';
+import { MapsDefault } from '../../helpers/MapsDefault';
+import { themeStore } from '../../store/theme.store';
+import { Polygon } from '../Polygon';
+import { CustomAdvancedMarker } from '../customadvancedmarker';
+import './MapaAdvance.css';
 
 const idDark = import.meta.env.VITE_GOOGLE_MAPS_ID_DARK;
 const idLight = import.meta.env.VITE_GOOGLE_MAPS_ID_LIGHT;
@@ -23,7 +24,7 @@ export const MapaAdvance = ({incidents, coordsPath}: MapaAdvanceProps) => {
                 mapTypeControl={false}
                 fullscreenControl={false}
                 streetViewControl={false}
-
+                className='mapa'
             >
                 {
                     coordsPath.length > 0 &&
