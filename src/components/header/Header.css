@@ -24,7 +24,7 @@
     padding: 0;
 }
 .list-option button,
-.list-option a{
+.list-option .sharing{
     align-items: center;
     background-color: #ccc;
     border-radius: 0.45rem;    
@@ -40,12 +40,12 @@
     padding: 0.5rem 0.75rem;
     background-color: #fff;
 }
-.list-option a{
+.list-option .sharing{
     background-color: rgb(216, 0, 0);
     color: #fff;
 }
 .list-option button span,
-.list-option a span{
+.list-option .sharing span{
     margin-left: 0.5rem;
 }
 @media(min-width:500px){

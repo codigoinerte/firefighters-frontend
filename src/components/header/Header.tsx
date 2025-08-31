@@ -3,6 +3,7 @@ import './Header.css';
 import { Icons } from '../Icons';
 import { ButtonTheme } from '../ButtonTheme';
 import { menuStore } from '../../store/menu.store';
+import { RWebShare } from 'react-web-share';
 
 export const Header = () => {
 
@@ -12,6 +13,12 @@ export const Header = () => {
     const onClickMenu = () => {
         setActive(!isActive);
     }
+
+    const currentDay = new Date();
+    const day = currentDay.getDate();
+    const month = currentDay.getMonth();
+    const year = currentDay.getFullYear();
+    const fullDay = `${day}/${month+1}/${year}`;
     return (
         <>
             <div className="header">
@@ -23,10 +30,19 @@ export const Header = () => {
                         <ButtonTheme />
                     </li>
                     <li>
-                        <a href='#'>
-                            <Icons icon={Share08Icon} color='#fff' />
-                            <span>Sharing</span>
-                        </a>
+                        <RWebShare
+                            data={{
+                                text: `Incidentes de las ultimas 24 horas del dia - ${fullDay}`,
+                                url: window.location.href,
+                                title: `Comparte los incidentes del dia ${fullDay}`,
+                            }}
+                            onClick={() => console.log("shared successfully!")}
+                        >
+                            <button className='sharing'>
+                                <Icons icon={Share08Icon} color='#fff' />
+                                <span>Sharing</span>
+                            </button>
+                        </RWebShare>
                     </li>
                     <li>
                         <button className='header-filters'
