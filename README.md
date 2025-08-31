@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# 🔥 Firefighters Incidents Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web para **consultar incidencias reportadas por los bomberos en Perú**, desarrollada con **React (frontend)** y **Python (backend/scraping)**.  
 
-Currently, two official plugins are available:
+👉 [Ver aplicación en producción](https://incidenciasbomberos.netlify.app/)  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📸 Demo  
+![demo](https://github-production-user-asset-6210df.s3.amazonaws.com/85417144/483999530-9567ac75-9af6-49cc-84f2-45d444831415.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250831%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250831T210836Z&X-Amz-Expires=300&X-Amz-Signature=1ae3e2e000fd94a10c9aaaae0f864998267c500f1d020612721b956a676e3ba0&X-Amz-SignedHeaders=host)
+ 
+---
+⚠️ Nota: El backend está alojado en un servidor gratuito, por lo que la primera carga puede tardar unos segundos en despertar. Una vez activo, la aplicación funciona con normalidad.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## ✨ Características  
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- 📊 Búsqueda de incidencias reportadas por los bomberos.  
+- 🔎 Filtrado de resultados por estado y ubicación.  
+- ⚡ Interfaz rápida y responsiva hecha con React.  
+- 🐍 Backend en Python que realiza **web scraping** de la web oficial de los bomberos.  
+- 🌐 Deploy en **Netlify** (frontend) y backend accesible mediante API.  
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## 🛠️ Tecnologías usadas  
+
+### Frontend
+- [React](https://reactjs.org/)  
+- [Axios](https://axios-http.com/) para consumo de API 
+
+### Backend
+- [Python](https://www.python.org/)  
+- [Flask] 
+- [BeautifulSoup / Requests]
+
+### Infraestructura
+- Deploy frontend: **Netlify**  
+- Deploy backend: Render*  
+
+---
+
+## 🚀 Instalación y uso  
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/codigoinerte/firefighters-frontend.git
+cd firefighters-frontend
