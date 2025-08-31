@@ -11,20 +11,23 @@ import {
         latlng, 
         SearchProps, 
 } from "../interface";
-import { MapsDefault } from "../helpers";
-
+import { MapsDefault, getParams, setHistoryUpdate } from "../helpers";
+import { menuStore } from "../store/menu.store";
 
 export const useApp = () => {
 
     const map = useMap('mapa');
+    const { paramsUrl } = getParams();
     const [coordsPath, setCoordsPath] = useState<latlng[]>([])
     const [incidents, setIncidents] = useState<Incident[]>([])
+
+    const setActiveMenu = menuStore(state => state.setActive);
 
     const [filterState, setFilterState] = useState<SearchProps>({
         cities: [],
         states: [],
-        city: null,
-        state: null,
+        city: paramsUrl?.city ?? null,
+        state: paramsUrl?.state ?? null,
         shouldSearch: false,
         isLoading: false
     });
@@ -56,43 +59,7 @@ export const useApp = () => {
         return {lat: lat, lng: lng}
     };
 
-    const getIncidents = async () => {
-
-        setFilterState(ps => ({...ps, isLoading: true}));
-        setIncidents([]);
-
-        const data = {
-            ...(filterState.city && filterState.city?.length > 0 ? {city: filterState.city}: {}),
-            ...(filterState.state && filterState.state?.length > 0 ? {state: filterState.state}: {}),
-        };
-
-        const response = await api.post<IncidentResponse>('data', data);
-        
-        setIncidents(response.data.incidents ?? []);
-
-        const cities: FilterSelectOption[] = response.data.cities
-                        .filter((item) => !item.includes("."))
-                        .map((item) => ({value:item, label:item }));
-        const states: FilterSelectOption[] = response.data.states.map((item) => ({value:item, label:item }));
-
-        setFilterState(ps => ({...ps, cities, states, isLoading: false, shouldSearch: false }));        
-    }
-
-    useEffect(() => {
-      getIncidents();
-      // eslint-disable-next-line
-    }, [])
-    
-    useEffect(() => {
-        if(filterState.shouldSearch && !filterState.isLoading){
-            getIncidents()
-        }
-        // eslint-disable-next-line
-    }, [filterState.city, filterState.state, filterState.shouldSearch]);
-
-    const handleSubmit = async ()=>{
-        setFilterState(ps => ({...ps, shouldSearch: true }));
-
+    const processBoundaryApi = async () => {
         const coords = await getBoundary(filterState.city);
 
         if(coords && coords?.length > 0){
@@ -106,12 +73,64 @@ export const useApp = () => {
             map?.setZoom(MapsDefault.zoom);
         }
     }
+    const getIncidents = async () => {
+
+        setFilterState(ps => ({...ps, isLoading: true}));
+        setIncidents([]);
+
+        const data = {
+            ...(filterState.city && filterState.city?.length > 0 ? {city: filterState.city}: {}),
+            ...(filterState.state && filterState.state?.length > 0 ? {state: filterState.state}: {}),
+        };
+        
+        setHistoryUpdate({
+            "city": filterState.city,
+            "state": filterState.state
+        })
+
+        const response = await api.post<IncidentResponse>('data', data);
+        
+        setIncidents(response.data.incidents ?? []);
+
+        const cities: FilterSelectOption[] = response.data.cities
+                        .filter((item) => !item.includes("."))
+                        .map((item) => ({value:item, label:item }));
+        const states: FilterSelectOption[] = response.data.states.map((item) => ({value:item, label:item }));
+
+        setFilterState(ps => ({...ps, cities, states, isLoading: false, shouldSearch: false }));        
+    }
+
+    const main = async ()=>{
+        try {
+            await Promise.all([getIncidents(), processBoundaryApi()]);            
+        } catch (error) {            
+            console.warn(error);
+        }
+    }
+
+    useEffect(() => {
+      main();
+      // eslint-disable-next-line
+    }, [])
+    
+    useEffect(() => {
+        if(filterState.shouldSearch && !filterState.isLoading){
+            main()
+        }
+        // eslint-disable-next-line
+    }, [filterState.city, filterState.state, filterState.shouldSearch]);
+
+    const handleSubmit = ()=>{
+        setFilterState(ps => ({...ps, shouldSearch: true }));
+        setActiveMenu(false);
+    }
 
     const handleClear = async ()=>{
         setFilterState(ps => ({...ps, city: '', state: '', shouldSearch: true }));
         map?.panTo(MapsDefault.center);
         map?.setZoom(MapsDefault.zoom);
         setCoordsPath([]);
+        setActiveMenu(false);
     }
 
     const handleChangeCity = (value: filterValue)=>{
